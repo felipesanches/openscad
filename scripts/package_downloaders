@@ -1,0 +1,42 @@
+#
+# package downloaders
+#
+# These commands will download binary dependency packages for various 
+# unix distributions. It is an experimental alternative to 
+# linux-build-dependencies.sh. 
+#
+# It still downloads and compiles CGAL and OpenCSG from source. All 
+# systems, as of mid-2012, contain outdated versions of OpenCSG and CGAL 
+# in their binary package system, which can cause buggy behavior.
+#
+
+# Fedora 17
+sudo yum install qt-devel bison flex eigen2-devel \
+ boost-devel mpfr-devel gmp-devel glew-devel gcc pkgconfig git
+sudo BASEDIR=/usr/local ./scripts/linux-build-dependencies.sh cgal-use-sys-libs
+sudo BASEDIR=/usr/local ./scripts/linux-build-dependencies.sh opencsg
+# https://bugzilla.redhat.com/show_bug.cgi?id=144967
+sudo echo /usr/local/lib | sudo tee -a /etc/ld.so.conf.d/local.conf
+sudo ldconfig
+
+# FreeBSD 9
+. ./scripts/setenv-freebsdbuild.sh
+pkg_add -r bison boost-libs cmake git bash eigen2 flex gmake gmp mpfr 
+pkg_add -r xorg libGLU libXmu libXi xorg-vfbserver glew
+pkg_add -r qt4-corelib qt4-gui qt4-moc qt4-opengl qt4-qmake qt4-rcc qt4-uic
+BASEDIR=/usr/local ./scripts/linux-build-dependencies.sh cgal-use-sys-libs
+BASEDIR=/usr/local ./scripts/linux-build-dependencies.sh opencsg
+
+# OpenSUSE 12
+sudo zypper install libeigen2-devel mpfr-devel gmp-devel boost-devel \
+ libqt4-devel glew-devel cmake git 
+sudo BASEDIR=/usr/local ./scripts/linux-build-dependencies.sh cgal-use-sys-libs
+sudo BASEDIR=/usr/local ./scripts/linux-build-dependencies.sh opencsg
+
+# Ubuntu 12
+sudo apt-get install build-essential libqt4-dev libqt4-opengl-dev \
+ libxmu-dev cmake bison flex libeigen2-dev git-core libboost-all-dev \
+ libXi-dev libmpfr-dev libgmp-dev libboost-dev libglew1.6-dev
+sudo BASEDIR=/usr/local ./scripts/linux-build-dependencies.sh cgal-use-sys-libs
+sudo BASEDIR=/usr/local ./scripts/linux-build-dependencies.sh opencsg
+
