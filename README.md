@@ -77,12 +77,11 @@ platform applicable to you below.
 
 To build OpenSCAD, you need some libraries and tools. The version
 numbers in brackets specify the versions which have been used for
-development. Other versions may or may not work as well.
+development. Other versions may not work very well, or at all. 
 
-If you're using a newer version of Ubuntu, you can install these 
-libraries from aptitude. If you're using Mac, or an older Linux, there 
-are build scripts that download and compile the libraries from source. 
-Follow the instructions for the platform you're compiling on below.
+If you're using Mac or Linux, there are build scripts that download and 
+compile updated versions of libraries from source. Follow the 
+instructions for the platform you're compiling on below.
 
 * [Qt4 (4.4 - 4.7)](http://www.qt.nokia.com/)
 * [CGAL (3.6 - 4.0.2)](http://www.cgal.org/)
@@ -131,35 +130,20 @@ compilation process.
 
 After that, follow the Compilation instructions below.
 
-### Building for newer Linux distributions
+### Building for Linux
 
 First, make sure that you have development tools installed to get GCC. 
-Then after you've cloned this git repository, use a package manager to 
-download packages for the dependency libraries listed above. Convenience 
-scripts are provided for some popular systems:
-
-    Ubuntu, Debian:    ./scripts/ubuntu-build-dependencies.sh
-    OpenSUSE:          ./scripts/opensuse-build-dependencies.sh
-    Fedora:            ./scripts/fedora-build-dependencies.sh
-
-Check your library versions to make sure they meet the minimum 
-requirements listed above. After that follow the Compilation 
-instructions below.
-
-### Building for older Linux or building without root access
-
-First, make sure that you have development tools installed to get GCC.
 Then after you've cloned this git repository, run the script that sets 
 up the environment variables.
 
     source ./scripts/setenv-linbuild.sh
 
-Then run the script to download & compile all the prerequisite libraries above:
+Then run the script to compile all the prerequisite libraries above:
 
     ./scripts/linux-build-dependencies.sh
 
-Then add LD_LIBRARY_PATH=$HOME/openscad_deps to your ~/.bashrc
-After that, follow the Compilation instructions below.
+Then add $HOME/openscad_deps to your LD_LIBRARY_PATH. After that, follow 
+the Compilation instructions below.
 
 ### Building for Windows
 
